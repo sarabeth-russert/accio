@@ -21,12 +21,14 @@ function LocationFeature(id, title, dialogue, option1, option2, option3, option4
   this.option4 = option4;
 }
 
-function ObjectLocationFeature(id, title, dialogue, question, answer) {
+function ObjectLocationFeature(id, title, dialogue, question, answer, objectRetrievalDialogue, objectID) {
   this.id = id;
   this.title = title;
   this.dialogue = dialogue;
   this.question = question;
   this.answer = answer;
+  this.objectRetrievalDialogue = objectRetrievalDialogue;
+  this.objectID = objectID;
 }
 
 
@@ -62,8 +64,22 @@ function renderFormLocationFeature(locationFeatureObject){
 }
 
 function verifyAnswer(event) {
+  // fix the comarper to be general
   if (acromantulaCave.answer === event.target.value.toLowerCase()) {
-    console.log('true');
+    //storeObjectToLocalData();
+    listener.innerHTML = '';
+    let titleElement = document.createElement('h2');
+    titleElement.textContent = acromantulaCave.title;
+    listener.appendChild(titleElement);
+    let dialogueBody = document.createElement('p');
+    dialogueBody.textContent = acromantulaCave.objectRetrievalDialogue;
+    listener.appendChild(dialogueBody);
+    let aElement = document.createElement('a');
+    aElement.setAttribute('href', 'lavatory.html');
+    let objectImage = document.createElement('img');
+    objectImage.setAttribute('src', '');
+
+
   }
 }
 
@@ -109,10 +125,12 @@ let hippogryphFlight = new LocationFeature('hippogryphFlight', 'Hooves and Claws
 
 let weasleyCar = new LocationFeature('weasleyCar', 'A Flying Car?!', 'You take your best guess on which direction is north and start walking with Esmeralda trotting along side. Eventually you came to a clearing and see a giant pile of debris with a bumper… You start pulling branches away from the bumper and discover a light blue Ford Anglia! Finally you can make some headway! You get in the car and Esmeralda hops over you into the passenger seat. You pull out your wand and try a few spells to get the car to start but no luck… now what? You\’re feeling frustrated and need a minute to think so you lean back in your seat and stare at the ceiling. All of a sudden you notice the roof of the car is covered in a baby spiders! You and Esmeralda both squeal and go flying out of the broken car.', ['Eww, you hate spiders, go back the way you came', 'hippogryphFlight'], ['Follow the spiders', 'acromantulaCave'], ['Return to Hagrid\'s Hut', 'hagridsHut'], ['Return to the second floor girls lavatory', 'home']);
 
-let acromantulaCave = new ObjectLocationFeature('acromantulaCave', 'The Acromantula Cave', ' Even though you and Esmeralda both fear spiders you know that if you have any hope of getting Acromantula webbing you are going to have to cozy up to some creepy crawlies. You follow the spiders until you see the dark mouth of a cave open up ahead. You don’t want to go in but you know you can\’t take 301 without your best friend… You go in the cave and all you see is hundreds of glittery lights, which as your sight is adjusting to the dark you realize must be the eyes of the biggest spider you have ever seen!! With a trembling voice you address the spider \“excuse me sir, or ma\’am, I really need your help. My friend has been turned into a pig” uh oh, maybe they eat pigs?! “anyway“ you rush on, “I really need some of your web for the potion I am making” The spider is silent for several moments… you start to wonder if he understands English, maybe you should have used gestures? Eventually he replies \“I will give you some of my web but you must answer this riddle.\"', 'First think of the person who lives in disguise, who deals in secrets and tells naught but lies. Next, tell me what\'s always the last thing to mend, the middle of middle and end of the end? And finally give me the sound often heard, during the search for a hard-to-find word. Now string them together and answer me this, which creature would you be unwilling to kiss?', 'spider');
+let acromantulaCave = new ObjectLocationFeature('acromantulaCave', 'The Acromantula Cave', ' Even though you and Esmeralda both fear spiders you know that if you have any hope of getting Acromantula webbing you are going to have to cozy up to some creepy crawlies. You follow the spiders until you see the dark mouth of a cave open up ahead. You don’t want to go in but you know you can\’t take 301 without your best friend… You go in the cave and all you see is hundreds of glittery lights, which as your sight is adjusting to the dark you realize must be the eyes of the biggest spider you have ever seen!! With a trembling voice you address the spider \“excuse me sir, or ma\’am, I really need your help. My friend has been turned into a pig” uh oh, maybe they eat pigs?! “anyway“ you rush on, “I really need some of your web for the potion I am making” The spider is silent for several moments… you start to wonder if he understands English, maybe you should have used gestures? Eventually he replies \“I will give you some of my web but you must answer this riddle.\"', 'First think of the person who lives in disguise, who deals in secrets and tells naught but lies. Next, tell me what\'s always the last thing to mend, the middle of middle and end of the end? And finally give me the sound often heard, during the search for a hard-to-find word. Now string them together and answer me this, which creature would you be unwilling to kiss?', 'spider', '\"You have solved my riddle, you may have my webbing. Do not come into my cave again.\" The spider says in a serious tone. You snatch up the webbing and you and Esmeralda head straight back to the castle.', 'webbing');
 
 
 //call when form is ready
 
 
 // will also need to store any items that are gathered and put them in a div that represents the inventory
+
+
