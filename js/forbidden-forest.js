@@ -1,9 +1,37 @@
 'use strict';
 
+//FORBIDDEN FOREST APP
+//checks local storage for webbing, if webbing then tells player you have already searched the forbidden forest.
+//if not webbing is found
+//objects for the forbidden forest page
 let locationFeatureArray = [hagridsHut, centaurFirenze, bowtruckleTree, hippogryphFlight, weasleyCar, acromantulaCave];
 
+let finalFeature = locationFeatureArray[locationFeatureArray.length - 1];
 
-renderFormLocationFeature(hagridsHut);
+function itemAlreadyAquiredMessage() {
+  let storedPlayer = JSON.parse(localStorage.getItem('player'));
+  if (storedPlayer.webbing === true) {
+    console.log('webbing is true');
+    listener.innerHTML = '';
+    let titleElement = document.createElement('h2');
+    titleElement.textContent = hagridsHut.title;
+    listener.appendChild(titleElement);
+    let dialogueBody = document.createElement('p');
+    dialogueBody.textContent = 'You have already found all that the forest offers. Try searching in other areas for more items.';
+    listener.appendChild(dialogueBody);
+    let aElement = document.createElement('a');
+    aElement.setAttribute('href', 'lavatory.html');
+    aElement.textContent = 'Return to the Lavatory';
+    listener.appendChild(aElement);
+  } else {
+    console.log('no web');
+    renderFormLocationFeature(hagridsHut);
+    checkLocalStorageToFillInventory();
+  }
+}
+itemAlreadyAquiredMessage();
+
+
 listener.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
@@ -28,23 +56,11 @@ function handleSubmit(event) {
         console.log(nextLocationObject);
         renderFormObjectLocationFeature(nextLocationObject);
       } else {
-      nextLocationObject = locationFeatureArray[i];
-      questionForm.innerHTML = '';
-      renderFormLocationFeature(nextLocationObject);
+        nextLocationObject = locationFeatureArray[i];
+        questionForm.innerHTML = '';
+        renderFormLocationFeature(nextLocationObject);
       }
     }
-    //if (i === (locationFeatureArray.length -2)) {
-      //questionForm.innerHTML = '';
-      //renderFormObjectLocationFeature(nextLocationObject);
-    //} else {
-      //questionForm.innerHTML = '';
-      //renderFormLocationFeature(nextLocationObject);
-    //}
   }
-
-  //will have to figure out a solution for when they answer the final question like
-  //if (optionChoice === 'spider') or something like that... not sure yet may have to handle the last event differently
-  //clear out form
 }
 
-/// fix the form so it checks to see if we are on the final question before evaluating the answer
