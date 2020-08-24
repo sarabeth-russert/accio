@@ -1,7 +1,7 @@
 'use strict';
 
 let playerIntake = document.getElementById(''); //from initital intake form
-let questionForm = document.getElementById(''); //id for the question form
+let questionForm = document.getElementById('forbidden-forest'); //id for the question form
 
 // function to take in the results of the form asking the name and what house they are in
 
@@ -31,14 +31,18 @@ function ObjectLocationFeature(id, title, dialogue, question, answer) {
 
 
 // how a question form would run, parent function has a variable formLocationFeature
-function renderQuestionOption(optionNumber) {
+function renderQuestionOption(object, optionNumber) {
   let inputElement = document.createElement('input');
   inputElement.setAttribute('type', 'radio');
-  inputElement.setAttribute('value', formLocationFeatureVariable.optionNumber[1]);
-  input.setAttribute('name', formLocationFeatureVariable.title);
-  input.setAttribute('checked', 'checked');
-  input.textContent = formLocationFeatureVariable.optionNumber[0];
-  //parent.appendChild(input);
+  inputElement.setAttribute('class', 'radioChoice');
+  inputElement.setAttribute('value', optionNumber[1]);
+  inputElement.setAttribute('name', object.title);
+  inputElement.setAttribute('checked', 'checked');
+  questionForm.appendChild(inputElement);
+  let labelElement = document.createElement('label');
+  labelElement.setAttribute('for', optionNumber);
+  labelElement.textContent = optionNumber[0];
+  questionForm.appendChild(labelElement);
 }
 
 
@@ -47,29 +51,21 @@ function renderFormLocationFeature(locationFeatureObject){
   let formLocationFeatureVariable = locationFeatureObject;
   let titleElement = document.createElement('h2');
   titleElement.textContent = formLocationFeatureVariable.title;
-  //append to parent if we like the element I am storing it in
+  questionForm.appendChild(titleElement);
   let dialogueBody = document.createElement('p');
   dialogueBody.textContent = formLocationFeatureVariable.dialogue;
-  // append to parent if we like the element
-  renderQuestionOption(option1);
-  renderQuestionOption(option2);
-  renderQuestionOption(option3);
-  renderQuestionOption(option4);
+  questionForm.appendChild(dialogueBody);
+  renderQuestionOption(formLocationFeatureVariable ,formLocationFeatureVariable.option1);
+  renderQuestionOption(formLocationFeatureVariable, formLocationFeatureVariable.option2);
+  renderQuestionOption(formLocationFeatureVariable, formLocationFeatureVariable.option3);
+  renderQuestionOption(formLocationFeatureVariable, formLocationFeatureVariable.option4);
 }
 
 
 
 // submit handler function: increments product clicks if the item was selected. Clears out the voting pane and adds three new images to be voted on. Once the voting session is complete clears out the voting pane and changes the greeter. Renders the data table and charts and turns off the event listener. Stores local data.
 
-function handleSubmit(event) {
-  event.preventDefault();
-  let optionChoice = event.target.input.value; //should be the variable for the next location to visit
-  //will have to figure out a solution for when they answer the final question like
-  //if (optionChoice === 'spider') or something like that... not sure yet may have to handle the last event differently
-  //clear out form
-  //parentElement.innerHTML = '';
-  renderFormLocationFeature(optionChoice);
-}
+
 
 
 //FORBIDDEN FOREST APP
@@ -89,10 +85,38 @@ let weasleyCar = new LocationFeature('weasleyCar', 'A Flying Car?!', 'You take y
 
 let acromantulaCave = new ObjectLocationFeature('acromantulaCave', 'The Acromantula Cave', ' Even though you and Esmeralda both fear spiders you know that if you have any hope of getting Acromantula webbing you are going to have to cozy up to some creepy crawlies. You follow the spiders until you see the dark mouth of a cave open up ahead. You don’t want to go in but you know you can\’t take 301 without your best friend… You go in the cave and all you see is hundreds of glittery lights, which as your sight is adjusting to the dark you realize must be the eyes of the biggest spider you have ever seen!! With a trembling voice you address the spider \“excuse me sir, or ma\’am, I really need your help. My friend has been turned into a pig” uh oh, maybe they eat pigs?! “anyway“ you rush on, “I really need some of your web for the potion I am making” The spider is silent for several moments… you start to wonder if he understands English, maybe you should have used gestures? Eventually he replies \“I will give you some of my web but you must answer this riddle.', 'First think of the person who lives in disguise, who deals in secrets and tells naught but lies. Next, tell me what\'s always the last thing to mend, the middle of middle and end of the end? And finally give me the sound often heard, during the search for a hard-to-find word. Now string them together and answer me this, which creature would you be unwilling to kiss?', 'spider');
 
-// maybe dont need... let locationFeatureArray = [hagridsHut, centaurFirenze, bowtruckleTree, hippogryphFlight, weasleyCar, acromantulaCave];
+let locationFeatureArray = [hagridsHut, centaurFirenze, bowtruckleTree, hippogryphFlight, weasleyCar, acromantulaCave];
 
 
 //call when form is ready
-//submission.addEventListener('submit', handleSubmit);
+
 
 // will also need to store any items that are gathered and put them in a div that represents the inventory
+
+renderFormLocationFeature(hagridsHut);
+questionForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let nextLocationName;
+  let nextLocationObject;
+  let optionChoices = document.getElementsByClassName('radioChoice');
+
+  for (let i = 0; i < optionChoices.length; i++) {
+    if (optionChoices[i].checked) {
+      nextLocationName = optionChoices[i].value;
+    }
+  }
+
+  for (let i = 0; i < locationFeatureArray.length; i++) {
+    console.log(locationFeatureArray[i].id);
+    if (nextLocationName === locationFeatureArray[i].id) {
+      nextLocationObject = locationFeatureArray[i];
+    }
+  }
+  //will have to figure out a solution for when they answer the final question like
+  //if (optionChoice === 'spider') or something like that... not sure yet may have to handle the last event differently
+  //clear out form
+  questionForm.innerHTML = '';
+  renderFormLocationFeature(nextLocationObject);
+}
