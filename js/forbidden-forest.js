@@ -1,5 +1,5 @@
 'use strict';
-
+let listener = document.getElementById('listener');
 let playerIntake = document.getElementById(''); //from initital intake form
 let questionForm = document.getElementById('forbidden-forest'); //id for the question form
 
@@ -61,6 +61,25 @@ function renderFormLocationFeature(locationFeatureObject){
   renderQuestionOption(formLocationFeatureVariable, formLocationFeatureVariable.option4);
 }
 
+function renderFormObjectLocationFeature(locationFeatureObject){
+  let formLocationFeatureVariable = locationFeatureObject;
+  let titleElement = document.createElement('h2');
+  titleElement.textContent = formLocationFeatureVariable.title;
+  questionForm.appendChild(titleElement);
+  let dialogueBody = document.createElement('p');
+  dialogueBody.textContent = formLocationFeatureVariable.dialogue;
+  questionForm.appendChild(dialogueBody);
+  let labelElement = document.createElement('label');
+  labelElement.setAttribute('for', 'answer');
+  labelElement.textContent = formLocationFeatureVariable.question;
+  questionForm.appendChild(labelElement);
+  let inputElement = document.createElement('input');
+  inputElement.setAttribute('type', 'text');
+  inputElement.setAttribute('value', '');
+  inputElement.setAttribute('name', 'answer');
+  questionForm.appendChild(inputElement);
+}
+
 
 
 // submit handler function: increments product clicks if the item was selected. Clears out the voting pane and adds three new images to be voted on. Once the voting session is complete clears out the voting pane and changes the greeter. Renders the data table and charts and turns off the event listener. Stores local data.
@@ -83,7 +102,7 @@ let hippogryphFlight = new LocationFeature('hippogryphFlight', 'Hooves and Claws
 
 let weasleyCar = new LocationFeature('weasleyCar', 'A Flying Car?!', 'You take your best guess on which direction is north and start walking with Esmeralda trotting along side. Eventually you came to a clearing and see a giant pile of debris with a bumper… You start pulling branches away from the bumper and discover a light blue Ford Anglia! Finally you can make some headway! You get in the car and Esmeralda hops over you into the passenger seat. You pull out your wand and try a few spells to get the car to start but no luck… now what? You\’re feeling frustrated and need a minute to think so you lean back in your seat and stare at the ceiling. All of a sudden you notice the roof of the car is covered in a baby spiders! You and Esmeralda both squeal and go flying out of the broken car.', ['Follow the spiders', 'acromantulaCave'], ['Eww, you hate spiders, go back the way you came', 'hippogryphFlight'], ['Return to Hagrid\'s Hut', 'hagridsHut'], ['Return to the second floor girls lavatory', 'home']);
 
-let acromantulaCave = new ObjectLocationFeature('acromantulaCave', 'The Acromantula Cave', ' Even though you and Esmeralda both fear spiders you know that if you have any hope of getting Acromantula webbing you are going to have to cozy up to some creepy crawlies. You follow the spiders until you see the dark mouth of a cave open up ahead. You don’t want to go in but you know you can\’t take 301 without your best friend… You go in the cave and all you see is hundreds of glittery lights, which as your sight is adjusting to the dark you realize must be the eyes of the biggest spider you have ever seen!! With a trembling voice you address the spider \“excuse me sir, or ma\’am, I really need your help. My friend has been turned into a pig” uh oh, maybe they eat pigs?! “anyway“ you rush on, “I really need some of your web for the potion I am making” The spider is silent for several moments… you start to wonder if he understands English, maybe you should have used gestures? Eventually he replies \“I will give you some of my web but you must answer this riddle.', 'First think of the person who lives in disguise, who deals in secrets and tells naught but lies. Next, tell me what\'s always the last thing to mend, the middle of middle and end of the end? And finally give me the sound often heard, during the search for a hard-to-find word. Now string them together and answer me this, which creature would you be unwilling to kiss?', 'spider');
+let acromantulaCave = new ObjectLocationFeature('acromantulaCave', 'The Acromantula Cave', ' Even though you and Esmeralda both fear spiders you know that if you have any hope of getting Acromantula webbing you are going to have to cozy up to some creepy crawlies. You follow the spiders until you see the dark mouth of a cave open up ahead. You don’t want to go in but you know you can\’t take 301 without your best friend… You go in the cave and all you see is hundreds of glittery lights, which as your sight is adjusting to the dark you realize must be the eyes of the biggest spider you have ever seen!! With a trembling voice you address the spider \“excuse me sir, or ma\’am, I really need your help. My friend has been turned into a pig” uh oh, maybe they eat pigs?! “anyway“ you rush on, “I really need some of your web for the potion I am making” The spider is silent for several moments… you start to wonder if he understands English, maybe you should have used gestures? Eventually he replies \“I will give you some of my web but you must answer this riddle.\"', 'First think of the person who lives in disguise, who deals in secrets and tells naught but lies. Next, tell me what\'s always the last thing to mend, the middle of middle and end of the end? And finally give me the sound often heard, during the search for a hard-to-find word. Now string them together and answer me this, which creature would you be unwilling to kiss?', 'spider');
 
 let locationFeatureArray = [hagridsHut, centaurFirenze, bowtruckleTree, hippogryphFlight, weasleyCar, acromantulaCave];
 
@@ -94,7 +113,7 @@ let locationFeatureArray = [hagridsHut, centaurFirenze, bowtruckleTree, hippogry
 // will also need to store any items that are gathered and put them in a div that represents the inventory
 
 renderFormLocationFeature(hagridsHut);
-questionForm.addEventListener('submit', handleSubmit);
+listener.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -109,14 +128,30 @@ function handleSubmit(event) {
   }
 
   for (let i = 0; i < locationFeatureArray.length; i++) {
-    console.log(locationFeatureArray[i].id);
     if (nextLocationName === locationFeatureArray[i].id) {
+      if (locationFeatureArray[i] === locationFeatureArray[locationFeatureArray.length - 1]) {
+        nextLocationObject = locationFeatureArray[i];
+        questionForm.innerHTML = '';
+        console.log(nextLocationObject);
+        renderFormObjectLocationFeature(nextLocationObject);
+      } else {
       nextLocationObject = locationFeatureArray[i];
+      questionForm.innerHTML = '';
+      renderFormLocationFeature(nextLocationObject);
+      }
     }
+    //if (i === (locationFeatureArray.length -2)) {
+      //questionForm.innerHTML = '';
+      //renderFormObjectLocationFeature(nextLocationObject);
+    //} else {
+      //questionForm.innerHTML = '';
+      //renderFormLocationFeature(nextLocationObject);
+    //}
   }
+
   //will have to figure out a solution for when they answer the final question like
   //if (optionChoice === 'spider') or something like that... not sure yet may have to handle the last event differently
   //clear out form
-  questionForm.innerHTML = '';
-  renderFormLocationFeature(nextLocationObject);
 }
+
+/// fix the form so it checks to see if we are on the final question before evaluating the answer
