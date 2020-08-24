@@ -22,6 +22,7 @@ function handleSubmit(event) {
     if (nextLocationName === locationFeatureArray[i].id) {
       if (locationFeatureArray[i] === locationFeatureArray[locationFeatureArray.length - 1]) {
         nextLocationObject = locationFeatureArray[i];
+        listener.removeEventListener('submit', handleSubmit);
         questionForm.innerHTML = '';
         listener.innerHTML = '';
         console.log(nextLocationObject);
