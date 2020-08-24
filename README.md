@@ -10,9 +10,9 @@ Text based interactive fantasy game application that provides entertainment and 
 
 ## WIREFRAMES:
 
-![Homepage](images/Home.jpg)
-![Locations Pages](images/Locations.jpg)
-![About Us](images/About-Us.jpg)
+![Homepage](images/wireframe-home.jpg)
+![Locations Pages](images/wireframe-locations.jpg)
+![About Us](images/wireframe-about-us.jpg)
 
 ## USER STORIES:
 
@@ -28,8 +28,7 @@ Text based interactive fantasy game application that provides entertainment and 
 
 ## DOMAIN MODEL:
 
-
-
+![Domain Model](images/domain-model.pdf)
 
 ### COLLABORATORS
 
