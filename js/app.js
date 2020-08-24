@@ -1,13 +1,67 @@
 'use strict';
 
 const listener = document.getElementById('listener');
-let playerIntake = document.getElementById(''); //from initital intake form
-let questionForm = document.getElementById('forbidden-forest'); //id for the 
+let questionForm = document.getElementById('forbidden-forest');
+const inventoryDiv = document.getElementById('userInventory');
+
+//this will go on splash page
+//let playerIntake = document.getElementById('');
+
+//a holder for local storage until homepage is made
+let newPlayer = new Player('Sara', 'Ravenclaw');
+//newPlayer.webbing = true;
+storeLocalData();
+
+//function gets items from local storage and puts them in the populateInventory function
+function checkLocalStorageToFillInventory() {
+  let storedPlayer = JSON.parse(localStorage.getItem('player'));
+  populateInventory(storedPlayer);
+}
+
+// stores all object data aquired
+function storeLocalData() {
+  let stringifyObject = JSON.stringify(newPlayer);
+  localStorage.setItem('player', stringifyObject);
+}
+
+// function to fill the user inventory container with items collected
+function populateInventory(storedPlayer) {
+  if (storedPlayer.webbing === true) {
+    let pElement = document.createElement('p');
+    pElement.setAttribute('class', 'inventoryItem');
+    pElement.textContent = 'five inches of Acromantula Webbing';
+    inventoryDiv.appendChild(pElement);
+  }
+  if (storedPlayer.butterbeer === true) {
+    let pElement = document.createElement('p');
+    pElement.setAttribute('class', 'inventoryItem');
+    pElement.textContent = 'one ounce of Butterbeer';
+    inventoryDiv.appendChild(pElement);
+  }
+  if (storedPlayer.candleWax === true) {
+    let pElement = document.createElement('p');
+    pElement.setAttribute('class', 'inventoryItem');
+    pElement.textContent = 'eight drops of wax from a Poisonous Candle';
+    inventoryDiv.appendChild(pElement);
+  }
+  if (storedPlayer.pheonixFeather === true) {
+    let pElement = document.createElement('p');
+    pElement.setAttribute('class', 'inventoryItem');
+    pElement.textContent = 'one Pheonix Feather';
+    inventoryDiv.appendChild(pElement);
+  }
+}
+
 // function to take in the results of the form asking the name and what house they are in
 
 function Player(name, house) {
   this.name = name;
-  this.house = house; // could assign a default house if the player doesn't know
+  this.house = house;
+  // could assign a default house if the player doesn't know
+  this.webbing = false;
+  this.butterbeer = false;
+  this.candleWax = false;
+  this.pheonixFeather = false;
 }
 
 // constructor for locations features
@@ -21,7 +75,8 @@ function LocationFeature(id, title, dialogue, option1, option2, option3, option4
   this.option4 = option4;
 }
 
-function ObjectLocationFeature(id, title, dialogue, question, answer, objectRetrievalDialogue, objectID) {
+// constuctor for final location features where you get the object
+function ObjectLocationFeature(id, title, dialogue, question, answer, objectRetrievalDialogue, objectID, objectImagePathway) {
   this.id = id;
   this.title = title;
   this.dialogue = dialogue;
@@ -29,10 +84,11 @@ function ObjectLocationFeature(id, title, dialogue, question, answer, objectRetr
   this.answer = answer;
   this.objectRetrievalDialogue = objectRetrievalDialogue;
   this.objectID = objectID;
+  this.objectImagePathway = objectImagePathway;
 }
 
 
-// how a question form would run, parent function has a variable formLocationFeature
+// creates radio buttons linked to locationFeature options
 function renderQuestionOption(object, optionNumber) {
   let inputElement = document.createElement('input');
   inputElement.setAttribute('type', 'radio');
@@ -63,26 +119,31 @@ function renderFormLocationFeature(locationFeatureObject){
   renderQuestionOption(formLocationFeatureVariable, formLocationFeatureVariable.option4);
 }
 
+// verifies that the answer the player gives at the final location feature is true and if so puts the item in the local storage and returns them to the lavatory
 function verifyAnswer(event) {
-  // fix the comarper to be general
-  if (acromantulaCave.answer === event.target.value.toLowerCase()) {
-    //storeObjectToLocalData();
+  if (finalFeature.answer === event.target.value.toLowerCase()) {
+    newPlayer.webbing = true;
+    storeLocalData();
     listener.innerHTML = '';
     let titleElement = document.createElement('h2');
-    titleElement.textContent = acromantulaCave.title;
+    titleElement.textContent = finalFeature.title;
     listener.appendChild(titleElement);
     let dialogueBody = document.createElement('p');
-    dialogueBody.textContent = acromantulaCave.objectRetrievalDialogue;
+    dialogueBody.textContent = finalFeature.objectRetrievalDialogue;
     listener.appendChild(dialogueBody);
     let aElement = document.createElement('a');
     aElement.setAttribute('href', 'lavatory.html');
+    listener.appendChild(aElement);
     let objectImage = document.createElement('img');
-    objectImage.setAttribute('src', '');
+    // change to finalFeature.objectImagePathway as src
+    objectImage.setAttribute('src', 'https://cdn4.vectorstock.com/i/1000x1000/91/58/round-spider-web-cobweb-vector-24799158.jpg');
+    aElement.appendChild(objectImage);
 
 
   }
 }
 
+// renders the final location feature to the page
 function renderFormObjectLocationFeature(locationFeatureObject){
   let formLocationFeatureVariable = locationFeatureObject;
   let titleElement = document.createElement('h2');
@@ -104,17 +165,7 @@ function renderFormObjectLocationFeature(locationFeatureObject){
 }
 
 
-
-// submit handler function: increments product clicks if the item was selected. Clears out the voting pane and adds three new images to be voted on. Once the voting session is complete clears out the voting pane and changes the greeter. Renders the data table and charts and turns off the event listener. Stores local data.
-
-
-
-
-//FORBIDDEN FOREST APP
-//checks local storage for webbing, if webbing then tells player you have already searched the forbidden forest.
-//if not webbing is found 
-//renderFormLocationFeature(hagridsHut);
-//objects for the forbidden forest page
+// forbidden forrest location features
 let hagridsHut = new LocationFeature('hagridsHut', 'Hagrid\'s hut', 'Deciding that the Forbidden Forrest might be the best place to start you and Esmeralda carefully make your way down to the back of Hagrid\’s hut and peer into the dark forrest. It\’s off limits to students for a reason but you decide to take your chances. What\’s the worst that could happen? The path ahead of you forks into three directions rather quickly. Which way will you go?', ['Esmeralda is sniffing off to the right… maybe she is just hunting for truffles though? Follow Esmeralda.', 'hippogryphFlight'], ['You see some hoof prints off to the right. Should you follow them?', 'centaurFirenze'], ['Boldly forward is always a great way to start. Go straight ahead.', 'bowtruckleTree'], ['Return to the second floor girls lavatory', 'home']);
 
 let centaurFirenze = new LocationFeature('centaurFirenze', 'The Stargazer', 'The forest is very dark so you have to look hard to see the hoof prints. Barely looking up you track them for what seems like 800 meters before bumping in to something very solid and not so gracefully falling on the ground. As you begin to look up you see hooves, then legs, then a torso and a face crowned by long white-blonde hair. You have heard there is only one Centaur on the grounds with such astonishingly blue eyes and know this must be Firenze! You tell him about Esmeralda and that you are on a quest for potion ingredients. He replies \“One might look to the stars. The Caelregio Araneus holds the key to what you seek.\” You\’ve heard Centaurs could be vague, but what in the world is he talking about?? \“uh thanks Firenze, I think\” you reply.', ['Go back the way you came and hang a left, maybe Esmeralda was on to something.', 'hippogryphFlight'], ['Head farther down the path, it looks like it gently curves to the left.', 'bowtruckleTree'], ['Return to Hagrid\'s Hut', 'hagridsHut'], ['Return to the second floor girls lavatory', 'home']);
@@ -127,10 +178,12 @@ let weasleyCar = new LocationFeature('weasleyCar', 'A Flying Car?!', 'You take y
 
 let acromantulaCave = new ObjectLocationFeature('acromantulaCave', 'The Acromantula Cave', ' Even though you and Esmeralda both fear spiders you know that if you have any hope of getting Acromantula webbing you are going to have to cozy up to some creepy crawlies. You follow the spiders until you see the dark mouth of a cave open up ahead. You don’t want to go in but you know you can\’t take 301 without your best friend… You go in the cave and all you see is hundreds of glittery lights, which as your sight is adjusting to the dark you realize must be the eyes of the biggest spider you have ever seen!! With a trembling voice you address the spider \“excuse me sir, or ma\’am, I really need your help. My friend has been turned into a pig” uh oh, maybe they eat pigs?! “anyway“ you rush on, “I really need some of your web for the potion I am making” The spider is silent for several moments… you start to wonder if he understands English, maybe you should have used gestures? Eventually he replies \“I will give you some of my web but you must answer this riddle.\"', 'First think of the person who lives in disguise, who deals in secrets and tells naught but lies. Next, tell me what\'s always the last thing to mend, the middle of middle and end of the end? And finally give me the sound often heard, during the search for a hard-to-find word. Now string them together and answer me this, which creature would you be unwilling to kiss?', 'spider', '\"You have solved my riddle, you may have my webbing. Do not come into my cave again.\" The spider says in a serious tone. You snatch up the webbing and you and Esmeralda head straight back to the castle.', 'webbing');
 
+//diagon-alley location features
 
-//call when form is ready
+//headmasters office location features
+
+//hogsmeade location features
 
 
-// will also need to store any items that are gathered and put them in a div that represents the inventory
 
 
