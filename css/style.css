@@ -1,35 +1,160 @@
-body{
+/* back ground one picture dosent repete */
 
+body{
+ background-image: url(/img/castle.jpg);
+ padding: 15%;
+ background-position: center;
+ background-size: cover;
+ background-repeat: no-repeat;
 }
+
+/* ul id=about inbetween the body and header */
+
+#about{
+  float: right;
+  color: #0ecccc;
+}
+
+/* h1 header with the accio and background image */
 
 h1{
+  height: 100px;
+  background-image: url(/img/pyramid.jpg);
+  background-color: #cccccc;
+  margin-top: 30px;
+  text-align: center;
+}
+
+h1 {
+  font-family: fantasy;
+  font-size: 600%;
+  color: aquamarine;
+  text-decoration-style: double;
+}
+
+/* nameplates is a div around male/femal/nonb */
+
+#nameplates {
+  transition: 2s;
+  float: center;
+  line-height: 90px;
+  margin-right: 90px;
+  list-style-type: none;
+}
+
+h2 {
+  font-weight: bolder;
+  margin-bottom: 4px;
+  color: #353636;
+  text-align: center;
+  font: xx-large;
+}
+
+#newUser {
 
 }
 
-p {
-
+#house {
+   color: aquamarine;
 }
 
-form {
-
+.color:hover
+{
+  background:#127575;
 }
+
 
 /* img=id's to be determined  */
 
-img{
+.nameplates { 
+  width:1200px; 
+  height:440px;  
+  padding-top:20px; 
+  padding-left:20px; 
+  padding-right:20px; 
+} 
+#male { 
+  float:left; 
+  width:400px; 
+  height:440px; 
+  background-image: url(/img/male.jpg);
+  background-size: cover; 
+  border:solid black; 
+  color: aquamarine;
+} 
+#female { 
+  float:left; 
+  width:400px; 
+  height:440px; 
+  background-image: url(/img/male.jpg);
+  background-size: cover;  
+  border:solid black; 
+  margin-left:10px;
+  margin-right: 10px;
+  color: aquamarine;
 
+} 
+#nonB { 
+  float:right; 
+  width:400px; 
+  height:440px; 
+  background-image: url(/img/male.jpg);
+  background-size: cover;
+  border:solid black;
+  color: aquamarine;
+} 
+h2 { 
+  font-weight: bolder;
+  margin-bottom: 4px;
+  color: #0ecccc;
+  text-align: center;
+  font: xx-large;
+} 
+
+#wizard {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
 }
 
-img {
-
+#witch {
+  
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
 }
 
-img {
-
+#nbSpellcaster {
+  
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  
 }
 
-img {
+.fade {
+  opacity:0.5;
+}
+.fade:hover{
+  opacity:1;
+}
 
+.grow:hover
+{
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
+}
+
+
+footer {
+  height: 100px;
+  background-image: url(/img/dark\ greens\ and\ wizard.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #cccccc;
+  margin-top: 30px;
 }
 
 
