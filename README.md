@@ -18,4 +18,5 @@ Text based interactive fantasy game application that provides entertainment and 
 - Christopher Quiocho
 
 ### Links and Resources
-* [](https://)
+* [How to create a drop-down list in HTML](https://www.w3schools.com/html/html_form_elements.asp)
+* [How to create a radio button in HTML](https://www.w3schools.com/tags/att_input_type_radio.asp)
