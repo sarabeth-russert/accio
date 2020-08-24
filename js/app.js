@@ -59,8 +59,8 @@ function Player(name, house) {
   this.house = house;
   // could assign a default house if the player doesn't know
   this.webbing = false;
-  this.butterbeer = false;
-  this.candleWax = false;
+  this.butterbeer = true;
+  this.candleWax = true;
   this.pheonixFeather = false;
 }
 
