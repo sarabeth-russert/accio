@@ -11,10 +11,9 @@ let finalFeature = locationFeatureArray[locationFeatureArray.length - 1];
 function itemAlreadyAquiredMessage() {
   let storedPlayer = JSON.parse(localStorage.getItem('player'));
   if (storedPlayer.webbing === true) {
-    console.log('webbing is true');
     listener.innerHTML = '';
     let titleElement = document.createElement('h2');
-    titleElement.textContent = hagridsHut.title;
+    titleElement.textContent = locationFeatureArray[0].title;
     listener.appendChild(titleElement);
     let dialogueBody = document.createElement('p');
     dialogueBody.textContent = 'You have already found all that the forest offers. Try searching in other areas for more items.';
@@ -24,8 +23,7 @@ function itemAlreadyAquiredMessage() {
     aElement.textContent = 'Return to the Lavatory';
     listener.appendChild(aElement);
   } else {
-    console.log('no web');
-    renderFormLocationFeature(hagridsHut);
+    renderFormLocationFeature(locationFeatureArray[0]);
     checkLocalStorageToFillInventory();
   }
 }
