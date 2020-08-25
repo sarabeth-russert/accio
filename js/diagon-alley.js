@@ -3,7 +3,7 @@
 //DIAGON ALLEY APP
 
 //TODO objects for the Diagon alley
-let locationFeatureArray = [];
+let locationFeatureArray = [leakyCauldron, flourishBlots, slugJig, floreanFortescue, giantSpiders, poisonousCandles];
 
 let finalFeature = locationFeatureArray[locationFeatureArray.length - 1];
 
@@ -60,4 +60,5 @@ function handleSubmit(event) {
     }
   }
 }
+
 
