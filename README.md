@@ -10,9 +10,9 @@ Text based interactive fantasy game application that provides entertainment and 
 
 ## WIREFRAMES:
 
-![Homepage](images/wireframe-home.jpg)
-![Locations Pages](images/wireframe-locations.jpg)
-![About Us](images/wireframe-about-us.jpg)
+![Homepage](img/wireframe-home.jpg)
+![Locations Pages](img/wireframe-locations.jpg)
+![About Us](img/wireframe-about-us.jpg)
 
 ## USER STORIES:
 
@@ -28,7 +28,7 @@ Text based interactive fantasy game application that provides entertainment and 
 
 ## DOMAIN MODEL:
 
-![Domain Model](images/domain-model.pdf)
+![Domain Model](img/domain-model.pdf)
 
 ### COLLABORATORS
 
@@ -40,3 +40,4 @@ Text based interactive fantasy game application that provides entertainment and 
 ### Links and Resources
 * [How to create a drop-down list in HTML](https://www.w3schools.com/html/html_form_elements.asp)
 * [How to create a radio button in HTML](https://www.w3schools.com/tags/att_input_type_radio.asp)
+* [The Ballad of Nearly Headless Nick](https://harrypotter.fandom.com/wiki/The_Ballad_of_Nearly_Headless_Nick)
