@@ -1,38 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Accio</title>
     <link href="css/reset.css" rel="stylesheet" type="text/css"/>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
+    <img id="parch-image" src="img/parchment-one.jpg">
     <header>
-      <h1></h1>
+      <div id="about-us">
+        <a href="about-us.html">About Us</a>
+      </div>
+      <h1>Hogwart's Adventures: Accio</h1>
     </header>
     <main>
-      <form id="newUser">
-        <fieldset>
-            <label>Name
+      <div id="parchment">
+        <!-- <img id="parchment-home" src="img/diagon-alley.jpg"> -->
+        <img src="https://via.placeholder.com/400x500">
+        <p>Welcome...</p>
+      </div>
+      <div id="user-input">
+      <section> 
+        <form id="newUser">
+          <fieldset>
+              <label>Name
                 <input name="userName" type="text" />
-            </label>
-            <label>Hogwarts House
+              </label>
+              <label>Hogwarts House
                 <select id="hogwartsHouse" name="What's your House?">
                   <option value="gryffindor">Gryffindor</option>
                   <option value="hufflepuff">Hufflepuff</option>
                   <option value="ravenclaw">Ravenclaw</option>
                   <option value="slytherin">Slytherin</option>
                 </select>
-            </label>
-              <p>What character do you most identify with:</p>
-                <input type="radio" id="wizard" name="character" value="wizard">
-                <label for="wizard">Wizard</label><br>
-                <input type="radio" id="witch" name="character" value="witch">
-                <label for="witch">Witch</label><br>
-                <input type="radio" id="nbSpellcaster" name="character" value="nbSpellcaster">
-                <label for="nbSpellcaster">NB Spellcaster</label><br>
-            <button type="submit">Submit</button>
-        </fieldset>
-    </form>
+              </label>
+                <p>What character do you most identify with:</p>
+                  <input type="radio" id="wizard" name="character" value="wizard">
+                  <label for="wizard">Wizard</label><br>
+                  <input type="radio" id="witch" name="character" value="witch">
+                  <label for="witch">Witch</label><br>
+                  <input type="radio" id="nbSpellcaster" name="character" value="nbSpellcaster">
+                  <label for="nbSpellcaster">NB Spellcaster</label><br>
+              <button type="submit">Submit</button>
+          </fieldset>
+        </form>
+    </section> 
+    <section>
+      <img src="https://via.placeholder.com/150">
+      <img src="https://via.placeholder.com/150">
+      <img src="https://via.placeholder.com/150">
+      <img src="https://via.placeholder.com/150">
+    </section>
+    </div>
     </main>
     <footer></footer>
     <script src="js/app.js"></script>
