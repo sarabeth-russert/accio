@@ -3,7 +3,7 @@
 //HEADMASTER-OFFICE APP
 
 //TODO create location array
-let locationFeatureArray = [];
+let locationFeatureArray = [hogwartsHalls, encore, headlessStory, nearlyHeadless, fatLady, movingStaircase];
 
 let finalFeature = locationFeatureArray[locationFeatureArray.length - 1];
 
