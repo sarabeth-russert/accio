@@ -1,27 +1,35 @@
 'use strict';
 
+//introduce global variables
+var parentElement = document.getElementById('newUser');
+
 const listener = document.getElementById('listener');
 let questionForm = document.getElementById('inner-form');
 const inventoryDiv = document.getElementById('userInventory');
 
-//this will go on splash page
-//let playerIntake = document.getElementById('');
+function Player(userName, hogwartsHouse) {
+  this.userName = userName;
+  this.hogwartsHouse = hogwartsHouse;
+  this.webbing = false;
+  this.candle = false;
+  this.pheonixFeather = false;
+  this.butterbeer = false;
+  // userArray.push(this);
+}
 
-//a holder for local storage until homepage is made
-let newPlayer = new Player('Sara', 'Ravenclaw');
-//newPlayer.webbing = true;
-storeLocalData();
+//holds the current player
+let newPlayer = JSON.parse(localStorage.getItem('userInfo'));
 
 //function gets items from local storage and puts them in the populateInventory function
 function checkLocalStorageToFillInventory() {
-  let storedPlayer = JSON.parse(localStorage.getItem('player'));
+  let storedPlayer = newPlayer;
   populateInventory(storedPlayer);
 }
 
 // stores all object data aquired
 function storeLocalData() {
   let stringifyObject = JSON.stringify(newPlayer);
-  localStorage.setItem('player', stringifyObject);
+  localStorage.setItem('userInfo', stringifyObject);
 }
 
 // function to fill the user inventory container with items collected
@@ -50,18 +58,6 @@ function populateInventory(storedPlayer) {
     pElement.textContent = 'one Pheonix Feather';
     inventoryDiv.appendChild(pElement);
   }
-}
-
-// function to take in the results of the form asking the name and what house they are in
-
-function Player(name, house) {
-  this.name = name;
-  this.house = house;
-  // could assign a default house if the player doesn't know
-  this.webbing = false;
-  this.butterbeer = false;
-  this.candle = false;
-  this.pheonixFeather = false;
 }
 
 // constructor for locations features
