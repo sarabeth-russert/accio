@@ -41,3 +41,4 @@ Text based interactive fantasy game application that provides entertainment and 
 * [How to create a drop-down list in HTML](https://www.w3schools.com/html/html_form_elements.asp)
 * [How to create a radio button in HTML](https://www.w3schools.com/tags/att_input_type_radio.asp)
 * [The Ballad of Nearly Headless Nick](https://harrypotter.fandom.com/wiki/The_Ballad_of_Nearly_Headless_Nick)
+* [Redirect a Webpage](https://www.w3schools.com/howto/howto_js_redirect_webpage.asp)
