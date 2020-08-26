@@ -53,12 +53,18 @@ function continueStoryNeedMore() {
         itemCounter++;
     }
     let totalItemsNeeded = (totalItems - itemCounter);
+    let dialogueTextSingular = `It's time to continue the search!! You have ${itemCounter} item so far, with ${totalItemsNeeded} to go. Where would you like to search next?`;
+    let dialogueTextPlural = `It's time to continue the search!! You have ${itemCounter} items so far, with ${totalItemsNeeded} to go. Where would you like to search next?`;
 
     let h2element = document.createElement('h2');
     h2element.textContent = `Welcome back ${name}!`;
     lavatoryParent.appendChild(h2element);
     let pElement = document.createElement('p');
-    pElement.textContent = `It's time to continue the search!! You have ${itemCounter} items so far, with ${totalItemsNeeded} to go. Where would you like to search next?`;
+    if (itemCounter === 1) {
+        pElement.textContent = dialogueTextSingular;
+    } else {
+        pElement.textContent = dialogueTextPlural;
+    }
     lavatoryParent.appendChild(pElement);
 }
 
