@@ -1,20 +1,12 @@
 'use strict';
 
-//introduce global variables
-var parentElement = document.getElementById('newUser');
 // var userArray = []
 var giveMeUserInfo = localStorage.getItem('userInfo');
 // console.log('show me', giveMeUserData);
 var parcedLocalStorage = [];
 
-function Player(userName, hogwartsHouse) {
-    this.userName = userName;
-    this.hogwartsHouse = hogwartsHouse;
-    // userArray.push(this);
-}
-
 function newUserSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
   var userName = event.target.userName.value;
   var hogwartsHouse = event.target.hogwartsHouse.value;
@@ -30,6 +22,6 @@ function newUserSubmit(event) {
 
 parentElement.addEventListener('submit', newUserSubmit);
 
-var parcedUserInfo = JSON.parse(giveMeUserInfo);
-console.log('parsed info', parcedUserInfo);
-parcedLocalStorage.push(parcedUserInfo);
+//var parcedUserInfo = JSON.parse(giveMeUserInfo);
+//console.log('parsed info', parcedUserInfo);
+//parcedLocalStorage.push(parcedUserInfo);

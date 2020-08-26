@@ -9,7 +9,7 @@ let locationFeatureArray = [hagridsHut, centaurFirenze, bowtruckleTree, hippogry
 let finalFeature = locationFeatureArray[locationFeatureArray.length - 1];
 
 function itemAlreadyAquiredMessage() {
-  let storedPlayer = JSON.parse(localStorage.getItem('player'));
+  let storedPlayer = JSON.parse(localStorage.getItem('userInfo'));
   if (storedPlayer.webbing === true) {
     listener.innerHTML = '';
     let titleElement = document.createElement('h2');
