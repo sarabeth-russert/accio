@@ -126,7 +126,7 @@ h1 {
 
 /* button stuff */
 
-button {
+#buttons {
   float: right;
   margin: 6em;
 }
