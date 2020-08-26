@@ -17,7 +17,7 @@ function newUserSubmit(event) {
   localStorage.setItem('userInfo', userString);
 
   // Simulate an HTTP redirect:
-  window.location.replace("/pages/narrative.html");
+  window.location.replace("pages/narrative.html");
 }
 
 parentElement.addEventListener('submit', newUserSubmit);
