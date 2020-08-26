@@ -18,8 +18,14 @@ main {
   justify-content: space-evenly;
 }
 
+#returning-user {
+  display: inline-block;
+  text-align: left;
+}
+
 #about-us {
-  text-align: right;
+  float: right;
+
 }
 
 a {
