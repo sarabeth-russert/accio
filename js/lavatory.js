@@ -24,15 +24,15 @@ function newStoryArc() {
     lavatoryParent.appendChild(h2element);
     let brElement = document.createElement('br');
     let pElement = document.createElement('p');
-    pElement.textContent = `Upon arriving to the bathroom, you call out for Esmeralda and all you hear is scuttling and snorting. Upon investigating the noise, you open the bathroom stall door and see what appears to be a hideous pig wearing red glasses…that talks!!`
+    pElement.textContent = `Upon arriving to the bathroom, you call out for Esmeralda and all you hear is scuttling and snorting. Upon investigating the noise, you open the bathroom stall door and see what appears to be a hideous pig wearing red glasses…that talks!!`;
     lavatoryParent.appendChild(pElement);
     lavatoryParent.appendChild(brElement);
     let pElementTwo = document.createElement('p');
-    pElementTwo.textContent = `It\’s your friend Esmeralda!! She scuttles right up to you and begs for help. She had attempted to place a beautification spell on herself which backfired and turned her into a pig. Knowing that your class finals are today, you need a solution and fast! If not, she will have to be absent and fail all of her exams and not get into 301!`
+    pElementTwo.textContent = `It\’s your friend Esmeralda!! She scuttles right up to you and begs for help. She had attempted to place a beautification spell on herself which backfired and turned her into a pig. Knowing that your class finals are today, you need a solution and fast! If not, she will have to be absent and fail all of her exams and not get into 301!`;
     lavatoryParent.appendChild(pElementTwo);
     lavatoryParent.appendChild(brElement);
     let pElementThree = document.createElement('p');
-    pElementThree.textContent = `Being an amazingly gifted potion student, you know of a potion that could cure her horrible state. However, the ingredients will be rather difficult to collect; you will have to search the school and surrounding areas if you hope to gather them in time. Your potion will require 8 drops of wax from a poisonous candle, an ounce of butterbeer, exactly five inches of Acromantula webbing and a phoenix feather. You are Esmeralda\’s only hope of making it to her exams so she can graduate to 301 so you better get started.`
+    pElementThree.textContent = `Being an amazingly gifted potion student, you know of a potion that could cure her horrible state. However, the ingredients will be rather difficult to collect; you will have to search the school and surrounding areas if you hope to gather them in time. Your potion will require 8 drops of wax from a poisonous candle, an ounce of butterbeer, exactly five inches of Acromantula webbing and a phoenix feather. You are Esmeralda\’s only hope of making it to her exams so she can graduate to 301 so you better get started.`;
     lavatoryParent.appendChild(pElementThree);
 }
 
@@ -58,17 +58,22 @@ function continueStoryNeedMore() {
     h2element.textContent = `Welcome back ${name}!`;
     lavatoryParent.appendChild(h2element);
     let pElement = document.createElement('p');
-    pElement.textContent = `It's time to continue the search!! You have ${itemCounter} items so far, with ${totalItemsNeeded} to go. Where would you like to search next?`
+    pElement.textContent = `It's time to continue the search!! You have ${itemCounter} items so far, with ${totalItemsNeeded} to go. Where would you like to search next?`;
     lavatoryParent.appendChild(pElement);
 }
 
 function itemsComplete() {
     let h2element = document.createElement('h2');
     h2element.textContent = `You did it ${name}!`;
-    lavatoryParent.appendChild(h2element);
+    listener.appendChild(h2element);
     let pElement = document.createElement('p');
-    pElement.textContent = `Fill at a later time...`
-    lavatoryParent.appendChild(pElement);
+    pElement.textContent = 'You return to the Moaning Myrtle\’s lavatory with all of your potion ingredients. Now it is time to put your potion expertise to the test. You start by lighting the Poisonous Candle to melt the wax. You begin to add your ingredients to the cauldron starting with one ounce of Butterbeer and heat it until it begins to simmer. The room fills with a shimmering mist. You add eight drops of wax from your burning candle and the potion turns an ominous green color, transforming the golden shimmer to a murky haze. The spell requires you to drape the Acromantula Webbing across Esmeralda\’s face. It looks like she is about to sneeze, but she stops herself at the last minute. You take your Phoenix Feather and use it to stir the green potion 10 times counter clock-wise. If you have done it correctly the potion should turn from green to a bubblegum pink. Suddenly the potion turns pink and the cauldron begins to overflow with soapy bubbles. Using the feather as a wand you command the bubbles to envelop Esmeralda completely. As the suds begin to flow towards the floor your friend appears in her regular human form before you. You both take a deep breath and exhale a sigh of relief. Realizing that you only have 10 minutes to get to your class to take your 301 entrance exam, you quickly hug and wave at Moaning Myrtle as you run from the room.';
+    listener.appendChild(pElement);
+    let aElement = document.createElement('a');
+    aElement.setAttribute('href', 'about-us.html');
+    aElement.textContent = 'Learn about the creators';
+    listener.appendChild(aElement);
+    
 }
 
 function createRadioButtons(outerIndex) {
@@ -77,7 +82,7 @@ function createRadioButtons(outerIndex) {
     inputElement.setAttribute('name', 'locationButton');
     inputElement.setAttribute('value', locationArray[outerIndex][0]);
     inputElement.setAttribute('checked', 'true');
-    inputElement.setAttribute('class', 'radioButton')
+    inputElement.setAttribute('class', 'radioButton');
     lavatoryParent.appendChild(inputElement);
     let labelElement = document.createElement('label');
     labelElement.setAttribute('for', locationArray[outerIndex][0]);
@@ -88,12 +93,7 @@ function createRadioButtons(outerIndex) {
 }
 
 function evaluateForContent() {
-//counter for items acquired
-//if 0, call newStoryArc = all four buttons
-//if 0> and >4, call continueStoryNeedMore = all four buttons
-//if ===4, call itemsComplete
     let itemCounter = 0;
-    let totalItems = 4;
 
     if (itemWebbing === true) {
         itemCounter++;
@@ -121,6 +121,7 @@ function evaluateForContent() {
         createRadioButtons(2);
         createRadioButtons(3);
     } else if (itemCounter === 4) {
+        listener.innerHTML = '';
         itemsComplete();
     }
 }
@@ -141,5 +142,4 @@ checkLocalStorageToFillInventory();
 evaluateForContent();
 
 
-  
 listener.addEventListener('submit', storyTransition);
