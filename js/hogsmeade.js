@@ -3,12 +3,12 @@
 //HOGSMEADE APP
 
 //TODO objects location array
-let locationFeatureArray = [];
+let locationFeatureArray = [hogsmeade, burningRobe, threeBroomsticks, esmeralda, returnThreeBroomsticks, acceptSeamus, hogsHead];
 
 let finalFeature = locationFeatureArray[locationFeatureArray.length - 1];
 
 function itemAlreadyAquiredMessage() {
-  let storedPlayer = JSON.parse(localStorage.getItem('player'));
+  let storedPlayer = JSON.parse(localStorage.getItem('userInfo'));
   if (storedPlayer.butterbeer === true) {
     listener.innerHTML = '';
     let titleElement = document.createElement('h2');
@@ -43,6 +43,7 @@ function handleSubmit(event) {
       nextLocationName = optionChoices[i].value;
       if (nextLocationName === 'home') {
         window.location.replace("../pages/lavatory.html");
+      }
     }
   }
 
