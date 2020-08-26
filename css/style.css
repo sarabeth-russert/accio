@@ -30,7 +30,7 @@ a {
 }
 
 h1 {
-  font-size: 6em;
+  font-size: 5em;
   margin-top: 50px;
   margin-bottom: 50px;
   text-align: center;
@@ -59,9 +59,6 @@ article p {
 
 }
 
-#user-input {
-}
-
 #newUser {
   position: relative;
   margin-left: auto;
@@ -83,16 +80,13 @@ button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 section:nth-child(1) {
-  margin: 20px;
+  margin-top: 150px;
 }
 
 section:nth-child(2) {
   margin: 50px;
 }
 
-.houseIcons {
-  border-radius: 50%;
-}
 
 
 
