@@ -1,23 +1,36 @@
-body {
-
+#background-image {
+  position: fixed;
+  opacity: 0.5;
+  width: 100%;
+  z-index: -1;
 }
 
-/* # p=ids to be determined */
-
-background {
-
+#display {
+  display: flex;
+  justify-content: space-between;
 }
 
-P {
-
+header {
+  text-align: right;
+  padding: 20px;
 }
 
-buttons {
-  
+main {
+  padding: 20px;
 }
 
-p {
-
+/* parchment will need to be adjusted after photoshop */
+#parchment {
+  width: 750px;
+  transform: rotate(90deg);
+  margin-top: 100px;
+  position: relative;
 }
 
-
+#form-text {
+  position: absolute;
+  top: 200px;
+  right: 220px;
+  width: 350px;
+  z-index: 10;
+}
