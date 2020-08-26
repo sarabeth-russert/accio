@@ -8,7 +8,7 @@ let locationFeatureArray = [leakyCauldron, flourishBlots, slugJig, floreanFortes
 let finalFeature = locationFeatureArray[locationFeatureArray.length - 1];
 
 function itemAlreadyAquiredMessage() {
-  let storedPlayer = JSON.parse(localStorage.getItem('player'));
+  let storedPlayer = JSON.parse(localStorage.getItem('userInfo'));
   if (storedPlayer.candle === true) {
     listener.innerHTML = '';
     let titleElement = document.createElement('h2');
@@ -40,6 +40,9 @@ function handleSubmit(event) {
   for (let i = 0; i < optionChoices.length; i++) {
     if (optionChoices[i].checked) {
       nextLocationName = optionChoices[i].value;
+      if (nextLocationName === 'home') {
+        window.location.replace("../pages/lavatory.html");
+      }
     }
   }
 
@@ -60,5 +63,3 @@ function handleSubmit(event) {
     }
   }
 }
-
-

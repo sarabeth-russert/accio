@@ -41,6 +41,8 @@ function handleSubmit(event) {
   for (let i = 0; i < optionChoices.length; i++) {
     if (optionChoices[i].checked) {
       nextLocationName = optionChoices[i].value;
+      if (nextLocationName === 'home') {
+        window.location.replace("../pages/lavatory.html");
     }
   }
 

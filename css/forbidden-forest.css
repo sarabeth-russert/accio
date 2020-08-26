@@ -11,15 +11,38 @@
 }
 
 header {
-  text-align: right;
   padding: 20px;
+}
+
+h1 {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 1.5em;
+}
+
+#userInventory {
+  margin-top: 150px;
+  margin-left: 150px;
+  position: relative;
+}
+
+#inventory-list-box {
+  position: absolute;
+  top: 90px;
+  left: 25px;
+  width: 350px;
+  z-index: 9;
+  font-size: .95em;
+  line-height: 2em;
+}
+
+.cross-out {
+  text-decoration: line-through;
 }
 
 main {
   padding: 20px;
 }
 
-/* parchment will need to be adjusted after photoshop */
 #parchment {
   height: 750px;
   margin-top: 20px;
@@ -28,7 +51,10 @@ main {
 
 #form-text {
   position: absolute;
-  top: 200px;
+  font-family: 'Shadows Into Light Two', cursive;
+  line-height: 1.3em;
+  font-size: .9em;
+  top: 175px;
   right: 120px;
   width: 350px;
   z-index: 10;
@@ -38,4 +64,9 @@ main {
   width: 100px;
   margin-top: 20px;
   margin-left: 115px;
+}
+
+h2 {
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: 1.3em;
 }
