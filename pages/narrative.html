@@ -6,17 +6,24 @@
     <link href="../css/narrative.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
+    <div id="display">
       <img id="background-image" src="../img/dormitory.jpg">
-    <header>
-      <div id="userInventory"></div>
-      <h1>House Dormitory</h1>
-    </header>
-    <main>
-      <form id="listener">
-        <fieldset id="narrative"></fieldset>
-        <button type="submit" name="submit-button">Submit</button>
-      </form>
-    </main>
+      <header>
+        <h1>House Dormitory</h1>
+        <div id="userInventory">
+          <img id="inventory-list">
+        </div>
+      </header>
+      <main>
+        <img id="parchment" src="../img/parchment-four.png">
+        <div id="form-text">
+          <form id="listener">
+            <fieldset id="narrative"></fieldset>
+            <button type="submit" name="submit-button">Submit</button>
+          </form>
+        </div>
+      </main>
+    </div>
     <footer></footer>
     <script src="../js/app.js"></script>
     <script src="../js/narrative.js"></script>
