@@ -1,23 +1,74 @@
-body {
-
+#background-image {
+  position: fixed;
+  opacity: 0.5;
+  width: 100%;
+  z-index: -1;
 }
 
-/* # p=ids to be determined */
-
-background {
-
+#display {
+  display: flex;
+  justify-content: space-between;
 }
 
-P {
-
+header {
+  padding: 20px;
 }
 
-buttons {
-  
+h1 {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 1.5em;
 }
 
-p {
+#userInventory {
+  margin-top: 150px;
+  margin-left: 150px;
+  position: relative;
+}
 
+#inventory-list-box {
+  position: absolute;
+  top: 90px;
+  left: 25px;
+  width: 350px;
+  z-index: 9;
+  font-size: .95em;
+  line-height: 2em;
+}
+
+.cross-out {
+  text-decoration: line-through;
+}
+
+main {
+  padding: 20px;
+}
+
+#parchment {
+  height: 750px;
+  margin-top: 20px;
+  position: relative;
+}
+
+#form-text {
+  position: absolute;
+  font-family: 'Shadows Into Light Two', cursive;
+  line-height: 1.3em;
+  font-size: .9em;
+  top: 175px;
+  right: 120px;
+  width: 350px;
+  z-index: 10;
+}
+
+#object-image {
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 115px;
+}
+
+h2 {
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: 1.3em;
 }
 
 

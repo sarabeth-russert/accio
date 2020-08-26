@@ -24,6 +24,7 @@ let newPlayer = JSON.parse(localStorage.getItem('userInfo'));
 function checkLocalStorageToFillInventory() {
   let storedPlayer = newPlayer;
   populateInventory(storedPlayer);
+  renderInventoryParchment(storedPlayer);
 }
 
 // stores all object data aquired
@@ -32,31 +33,65 @@ function storeLocalData() {
   localStorage.setItem('userInfo', stringifyObject);
 }
 
+function renderInventoryParchment(storedPlayer) {
+  let parchmentParent = document.getElementById('userInventory');
+  let inventoryParchmentID = document.getElementById('inventory-list');
+  if (storedPlayer.hogwartsHouse === 'gryffindor') {
+    inventoryParchmentID.setAttribute('src', '../img/inventorylistgryffindor.png');
+  }
+  if (storedPlayer.hogwartsHouse === 'hufflepuff') {
+    inventoryParchmentID.setAttribute('src', '../img/inventorylisthufflepuff.png');
+  }
+  if (storedPlayer.hogwartsHouse === 'ravenclaw') {
+    inventoryParchmentID.setAttribute('src', '../img/inventorylistravenclaw.png');
+  }
+  if (storedPlayer.hogwartsHouse === 'slytherin') {
+    inventoryParchmentID.setAttribute('src', '../img/inventorylistslytherin.png');
+  }
+  parchmentParent.appendChild(inventoryParchmentID);
+
+}
+
 // function to fill the user inventory container with items collected
 function populateInventory(storedPlayer) {
+  let divForAllPElements = document.createElement('div');
+  divForAllPElements.setAttribute('id', 'inventory-list-box');
+  inventoryDiv.appendChild(divForAllPElements);
+
+  let pElementWebbing = document.createElement('p');
+  pElementWebbing.setAttribute('class', 'inventoryItem');
+  pElementWebbing.textContent = '5 inches of Acromantula Webbing';
+  divForAllPElements.appendChild(pElementWebbing);
   if (storedPlayer.webbing === true) {
-    let pElement = document.createElement('p');
-    pElement.setAttribute('class', 'inventoryItem');
-    pElement.textContent = 'five inches of Acromantula Webbing';
-    inventoryDiv.appendChild(pElement);
+    pElementWebbing.setAttribute('class', 'cross-out');
+    divForAllPElements.appendChild(pElementWebbing);
   }
+
+  let pElementButterbeer = document.createElement('p');
+  pElementButterbeer.setAttribute('class', 'inventoryItem');
+  pElementButterbeer.textContent = '1 ounce of Butterbeer';
+  divForAllPElements.appendChild(pElementButterbeer);
   if (storedPlayer.butterbeer === true) {
-    let pElement = document.createElement('p');
-    pElement.setAttribute('class', 'inventoryItem');
-    pElement.textContent = 'one ounce of Butterbeer';
-    inventoryDiv.appendChild(pElement);
+    pElementButterbeer.setAttribute('class', 'cross-out');
+    divForAllPElements.appendChild(pElementButterbeer);
   }
-  if (storedPlayer.candleWax === true) {
-    let pElement = document.createElement('p');
-    pElement.setAttribute('class', 'inventoryItem');
-    pElement.textContent = 'eight drops of wax from a Poisonous Candle';
-    inventoryDiv.appendChild(pElement);
+
+  let pElementCandle = document.createElement('p');
+  pElementCandle.setAttribute('class', 'inventoryItem');
+  pElementCandle.textContent = '8 drops of wax from a Poisonous Candle';
+  divForAllPElements.appendChild(pElementCandle);
+  if (storedPlayer.candle === true) {
+    pElementCandle.setAttribute('class', 'cross-out');
+    divForAllPElements.appendChild(pElementCandle);
   }
+
+  let pElementPheonixFeather = document.createElement('p');
+  pElementPheonixFeather.setAttribute('class', 'inventoryItem');
+  pElementPheonixFeather.textContent = '1 Pheonix Feather';
+  divForAllPElements.appendChild(pElementPheonixFeather);
   if (storedPlayer.pheonixFeather === true) {
-    let pElement = document.createElement('p');
-    pElement.setAttribute('class', 'inventoryItem');
-    pElement.textContent = 'one Pheonix Feather';
-    inventoryDiv.appendChild(pElement);
+    pElementPheonixFeather.setAttribute('class', 'cross-out');
+    divForAllPElements.appendChild(pElementPheonixFeather);
   }
 }
 
@@ -97,6 +132,8 @@ function renderQuestionOption(object, optionNumber) {
   labelElement.setAttribute('for', optionNumber);
   labelElement.textContent = optionNumber[0];
   questionForm.appendChild(labelElement);
+  let breakElement = document.createElement('br');
+  questionForm.appendChild(breakElement);
 }
 
 
@@ -118,7 +155,16 @@ function renderFormLocationFeature(locationFeatureObject){
 // verifies that the answer the player gives at the final location feature is true and if so puts the item in the local storage and returns them to the lavatory
 function verifyAnswer(event) {
   if (finalFeature.answer === event.target.value.toLowerCase()) {
-    newPlayer.webbing = true;
+    let correctAnswer = finalFeature.answer;
+    if (correctAnswer === 'spider') {
+      newPlayer.webbing = true;
+    } else if (correctAnswer === 'alohomora') {
+      newPlayer.candle = true;
+    } else if (correctAnswer === 'wand') {
+      newPlayer.pheonixFeather = true;
+    } else if (correctAnswer === '') {
+      newPlayer.butterbeer = true;
+    }
     storeLocalData();
     listener.innerHTML = '';
     let titleElement = document.createElement('h2');
@@ -135,10 +181,9 @@ function verifyAnswer(event) {
     objectImage.setAttribute('src', finalFeature.objectImagePathway);
     objectImage.setAttribute('id', 'object-image');
     aElement.appendChild(objectImage);
-
-
   }
 }
+
 
 // renders the final location feature to the page
 function renderFormObjectLocationFeature(locationFeatureObject){
@@ -186,7 +231,7 @@ let floreanFortescue = new LocationFeature('floreanFortescue', 'Florean Fortescu
 
 let giantSpiders = new LocationFeature('giantSpiders', 'Giant Spiders', 'You decide to go right, despite Esmeralda\’s protestations, and look up at a shop that looks long abandoned with a sign reading Giant Spiders. Maybe this would have been a good place to get Acromantula Webbing if it hadn\’t gone out of business. Unfortunately the only webbing you see in the windows appears to belong to regular sized spiders so you are going to have to try your luck elsewhere.', ['Go back to the left', 'poisonousCandles'], ['Another ice cream is sounding really good right now', 'flourishBlots'], ['Go back to the Leaky Cauldron', 'leakyCauldron'], ['Return to the 2nd floor girls lavatory', 'home']);
 
-let poisonousCandles = new ObjectLocationFeature('poisonousCandles', 'Poisonous Candles', 'Your heart starts beating rapidly when you read the name painted on the window of the shabby looking shop ahead. Poisonous Candles sounds like a place that might have just what you came for. As you approach the door you notice a handwritten note on the door that says \“Closed for lunch. Back in 30 minutes\”. You don’t want to hang out in this freaky alley waiting and it might not be a good idea to be seen buying goods from a place like this. You look down at your friends desperate face and realize you have no other choice. You are going to have to break in, get the candle, and get back to Hogwarts. You\’ll have to be in and out before the alarm charm that is likely placed on the door alerts the shopkeeper and you get caught.', ['You try the only unlocking charm you know, ironically also known as the \“theif’s friend\”', 'alohomora'], ['Amazingly the charm works and you stick your hand in the door, snatching the first candle you touch and leaving a gold coin in it\’s place. Hopefully one gold galleon is enough! You and Esmeralda dart into the shadows just as a young pox covered wizard apparates on the doorstep of the shop and runs inside to look for the intruder. You grab your pig and race for the Leaky Cauldron!', 'candle']);
+let poisonousCandles = new ObjectLocationFeature('poisonousCandles', 'Poisonous Candles', 'Your heart starts beating rapidly when you read the name painted on the window of the shabby looking shop ahead. Poisonous Candles sounds like a place that might have just what you came for. As you approach the door you notice a handwritten note on the door that says \“Closed for lunch. Back in 30 minutes\”. You don’t want to hang out in this freaky alley waiting and it might not be a good idea to be seen buying goods from a place like this. You look down at your friends desperate face and realize you have no other choice. You are going to have to break in, get the candle, and get back to Hogwarts. You\’ll have to be in and out before the alarm charm that is likely placed on the door alerts the shopkeeper and you get caught.', 'You try the only unlocking charm you know, ironically also known as the \“theif’s friend\”', 'alohomora', 'Amazingly the charm works and you stick your hand in the door, snatching the first candle you touch and leaving a gold coin in it\’s place. Hopefully one gold galleon is enough! You and Esmeralda dart into the shadows just as a young pox covered wizard apparates on the doorstep of the shop and runs inside to look for the intruder. You grab your pig and race for the Leaky Cauldron!', 'candle', '../img/candle.png');
 
 
 //headmasters office location features
@@ -200,7 +245,7 @@ let nearlyHeadless = new LocationFeature('nearlyHeadless', 'Nearly Headless Nick
 
 let fatLady = new LocationFeature('fatLady', 'The Fat Lady', 'As we approach the painting of The Fat Lady, she appears to be making a horrific noise that resemble nails on a chalkboard. Upon getting closer, we realize that she\’s singing! Esmeralda and I quickly wipe the look of shock off of our faces and give her a round of applause. She seems pleased by our reaction and asks if we’d like to hear her sing again. You anxiously respond, \“You’re voice is unique and one-of-a-kind! We would love to hear you sing again but we are in dire need of finding the headmaster\’s office. Would you be able to help us?\” The Fat Lady seems disappointed at your answer but seems willing to help. She tells you and Esmeralda, \“The headmaster\’s office is reached by means of a circular, moving staircase which is guarded by a gargoyle. Tell it the correct password to enter.\” You ask, \“What could the password be?\” \“It\’s a tool that has a core,\” she replies. \“Now look over there, I believe it\’s Nearly Headless Nick, maybe he could point you in the right direction.\”', ['Talk to Nearly Headless Nick', 'nearlyHeadless'], ['Ask The Fat Lady to sing for us again. She may give us more clues if we butter her up', 'encore'], ['Go down the moving staircase', 'movingStaircase'], ['Return to the 2nd floor girls lavatory', 'home']);
 
-let movingStaircase = new ObjectLocationFeature('movingStaircase', 'Down the Moving Staircase', 'You follow Esmeralda\’s lead and begin heading down the moving staircase, the staircase abruptly begins to shift towards the right, then swerves slightly back to the left and suddenly extends toward the second floor. You eagerly jump off the staircase before it begins to move again… You look around and find yourself in a long corridor. At the very end of this long corridor you see what appears to be a creature of some sort. You and Esmeralda slowly and quietly walk down the hallway and you are relieved to see that the creature is just a gargoyle statue… that just moved!! Esmeralda jumps and hides behind you. You\’re startled and confused… why is there a random gargoyle just standing here at the end of this corridor? You muster up the courage and ask the gargoyle why it’s here…', 'The gargoyle looked at Esmeralda and I and said, \“Channel magic it will, of just two materials this instrument made. The wizard it chooses, it\’s not always clear why. What am I?\"', 'wand', 'The gargoyle slowly steps aside and reveals the entrance to a circular moving staircase. Esmeralda and I quietly ascend the staircase into a large beautiful circular room, full of funny little noises. The walls were covered with portraits of old headmasters and headmistresses, all of them snoozing in their frames. There was an enormous, claw-footed desk and to the side of it sitting on a perch is Fawkes, Dumbledore\’s phoenix! You make eye-contact with Fawkes, and as if he knew what you needed, he rustles his feathers and a single feather slowly floats through the air and lands on Esmeralda\’s nose! You laugh in excitement while Esmeralda trotts excitedly in circles. You thank Fawkes and quietly make your way out of the headmaster/’s office. You got the phoenix feather!!', 'pheonixFeather');
+let movingStaircase = new ObjectLocationFeature('movingStaircase', 'Down the Moving Staircase', 'You follow Esmeralda\’s lead and begin heading down the moving staircase, the staircase abruptly begins to shift towards the right, then swerves slightly back to the left and suddenly extends toward the second floor. You eagerly jump off the staircase before it begins to move again… You look around and find yourself in a long corridor. At the very end of this long corridor you see what appears to be a creature of some sort. You and Esmeralda slowly and quietly walk down the hallway and you are relieved to see that the creature is just a gargoyle statue… that just moved!! Esmeralda jumps and hides behind you. You\’re startled and confused… why is there a random gargoyle just standing here at the end of this corridor? You muster up the courage and ask the gargoyle why it’s here…', 'The gargoyle looked at Esmeralda and I and said, \“Channel magic it will, of just two materials this instrument made. The wizard it chooses, it\’s not always clear why. What am I?\"', 'wand', 'The gargoyle slowly steps aside and reveals the entrance to a circular moving staircase. Esmeralda and I quietly ascend the staircase into a large beautiful circular room, full of funny little noises. The walls were covered with portraits of old headmasters and headmistresses, all of them snoozing in their frames. There was an enormous, claw-footed desk and to the side of it sitting on a perch is Fawkes, Dumbledore\’s phoenix! You make eye-contact with Fawkes, and as if he knew what you needed, he rustles his feathers and a single feather slowly floats through the air and lands on Esmeralda\’s nose! You laugh in excitement while Esmeralda trotts excitedly in circles. You thank Fawkes and quietly make your way out of the headmaster/’s office. You got the phoenix feather!!', 'pheonixFeather', '../img/feather.png');
 
 //hogsmeade location features
 
