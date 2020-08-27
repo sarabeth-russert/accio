@@ -15,8 +15,7 @@ function itemAlreadyAquiredMessage() {
     titleElement.textContent = locationFeatureArray[0].title;
     listener.appendChild(titleElement);
     let dialogueBody = document.createElement('p');
-    //TODO add dialoge here
-    dialogueBody.textContent = '';
+    dialogueBody.textContent = 'You\'ve had enough of explosions and dirty pubs for the day. Head back to the castle.';
     listener.appendChild(dialogueBody);
     let aElement = document.createElement('a');
     aElement.setAttribute('href', 'lavatory.html');
