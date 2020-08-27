@@ -17,7 +17,7 @@ function renderStory() {
     narrativeForm.appendChild(h2element);
     let brElement = document.createElement('br');
     let pElement = document.createElement('p');
-    pElement.textContent = `You are abruptly woken on the morning of your final exam in the ${house} dormitory by Moaning Myrtle. She obnoxiously informs you that you urgently needed to retrieve your friend Esmeralda from the second-floor girls\’ lavatory. As Myrtle floats away, you hear her mutter \“I want that swine out of my bathroom…\”.`
+    pElement.textContent = `You are abruptly woken on the morning of your final exam in the ${house} dormitory by Moaning Myrtle. She obnoxiously informs you that you urgently need to retrieve your friend Esmeralda from the second-floor girls\’ lavatory. As Myrtle floats away, you hear her mutter \“I want that swine out of my bathroom…\”.`
     narrativeForm.appendChild(pElement);
     narrativeForm.appendChild(brElement);
 }

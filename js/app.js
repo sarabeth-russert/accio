@@ -87,7 +87,7 @@ function populateInventory(storedPlayer) {
 
   let pElementPheonixFeather = document.createElement('p');
   pElementPheonixFeather.setAttribute('class', 'inventoryItem');
-  pElementPheonixFeather.textContent = '1 Pheonix Feather';
+  pElementPheonixFeather.textContent = '1 Phoenix Feather';
   divForAllPElements.appendChild(pElementPheonixFeather);
   if (storedPlayer.pheonixFeather === true) {
     pElementPheonixFeather.setAttribute('class', 'cross-out');
