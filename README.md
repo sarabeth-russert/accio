@@ -40,5 +40,10 @@ Text based interactive fantasy game application that provides entertainment and 
 ### Links and Resources
 * [How to create a drop-down list in HTML](https://www.w3schools.com/html/html_form_elements.asp)
 * [How to create a radio button in HTML](https://www.w3schools.com/tags/att_input_type_radio.asp)
-* [The Ballad of Nearly Headless Nick](https://harrypotter.fandom.com/wiki/The_Ballad_of_Nearly_Headless_Nick)
+* [Adding Shadow on Hover to a Button](https://www.w3schools.com/css/css3_buttons.asp)
 * [Redirect a Webpage](https://www.w3schools.com/howto/howto_js_redirect_webpage.asp)
+* [Harry Potter Wiki](https://harrypotter.fandom.com/wiki/Main_Page)
+* [The Ballad of Nearly Headless Nick](https://harrypotter.fandom.com/wiki/The_Ballad_of_Nearly_Headless_Nick)
+* [Free Usable Images and Backgrounds](https://unsplash.com/)
+* [Photos Released Under Public Domain License](https://www.piqsels.com/)
+* [Royalty Free Photos & Backgrounds](https://www.pickpik.com/)
