@@ -57,7 +57,7 @@ function continueStoryNeedMore() {
     let dialogueTextPlural = `It's time to continue the search!! You have ${itemCounter} items so far, with ${totalItemsNeeded} to go. Where would you like to search next?`;
 
     let h2element = document.createElement('h2');
-    h2element.textContent = `Welcome back ${name}!`;
+    h2element.textContent = `Welcome back ${newPlayer.userName}!`;
     lavatoryParent.appendChild(h2element);
     let pElement = document.createElement('p');
     if (itemCounter === 1) {
@@ -70,7 +70,7 @@ function continueStoryNeedMore() {
 
 function itemsComplete() {
     let h2element = document.createElement('h2');
-    h2element.textContent = `You did it ${name}!`;
+    h2element.textContent = `You did it ${newPlayer.userName}!`;
     listener.appendChild(h2element);
     let pElement = document.createElement('p');
     pElement.textContent = 'You return to the Moaning Myrtle\’s lavatory with all of your potion ingredients. Now it is time to put your potion expertise to the test. You start by lighting the Poisonous Candle to melt the wax. You begin to add your ingredients to the cauldron starting with one ounce of Butterbeer and heat it until it begins to simmer. The room fills with a shimmering mist. You add eight drops of wax from your burning candle and the potion turns an ominous green color, transforming the golden shimmer to a murky haze. The spell requires you to drape the Acromantula Webbing across Esmeralda\’s face. It looks like she is about to sneeze, but she stops herself at the last minute. You take your Phoenix Feather and use it to stir the green potion 10 times counter clock-wise. If you have done it correctly the potion should turn from green to a bubblegum pink. Suddenly the potion turns pink and the cauldron begins to overflow with soapy bubbles. Using the feather as a wand you command the bubbles to envelop Esmeralda completely. As the suds begin to flow towards the floor your friend appears in her regular human form before you. You both take a deep breath and exhale a sigh of relief. Realizing that you only have 10 minutes to get to your class to take your 301 entrance exam, you quickly hug and wave at Moaning Myrtle as you run from the room.';
